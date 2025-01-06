@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "id": "peepochat",
-  "version": "${version}",
+  "version": "1.0-mc1.21.3",
   "name": "PeepoChat",
   "description": "",
   "authors": [],
   "contact": {},
   "license": "All-Rights-Reserved",
-  "icon": "assets/peepochat/icon.png",
+  "icon": "assets/peepochat/icons/mod_icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
