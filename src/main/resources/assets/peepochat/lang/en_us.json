@@ -1,0 +1,5 @@
+{
+  "peepochat.config.title": "Peepochat Settings",
+  "peepochat.config.category.general": "General",
+  "peepochat.config.option.enable_filter": "Enable Message Filter"
+}
