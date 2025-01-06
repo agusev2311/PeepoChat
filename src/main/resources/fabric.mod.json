@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "peepochat",
+  "version": "${version}",
+  "name": "PeepoChat",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/peepochat/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "agusev.peepochat.client.PeepochatClient"
+    ],
+    "main": [
+      "agusev.peepochat.Peepochat"
+    ],
+    "modmenu": [
+      "agusev.peepochat.client.config.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "peepochat.mixins.json",
+    {
+      "config": "peepochat.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+    "cloth-config": ">=16.0.143"
+  },
+  "suggests": {
+    "modmenu": ">=12.0.0"
+  }
+}
