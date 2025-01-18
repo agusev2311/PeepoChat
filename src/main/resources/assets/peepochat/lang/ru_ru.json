@@ -1,5 +1,11 @@
 {
   "peepochat.config.title": "Настройки Peepochat",
+
   "peepochat.config.category.general": "Основные",
-  "peepochat.config.option.enable_filter": "Включить фильтр сообщений"
+  "peepochat.config.category.debug": "Отладка",
+
+  "peepochat.config.option.enable_filter": "Включить фильтр сообщений",
+
+  "peepochat.config.option.enable_debug": "Включить режим отладки",
+  "peepochat.config.option.show_raw_json": "Показывать необработанные JSON-сообщения"
 }

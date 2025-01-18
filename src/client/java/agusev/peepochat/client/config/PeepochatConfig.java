@@ -13,6 +13,8 @@ public class PeepochatConfig {
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("peepochat.json");
 
     public boolean enableFilter = true;
+    public boolean enableDebug = false;
+    public boolean showRawJson = false;
 
     public static PeepochatConfig getInstance() {
         if (INSTANCE == null) {
@@ -28,6 +30,8 @@ public class PeepochatConfig {
                 try (Reader reader = new FileReader(CONFIG_PATH.toFile())) {
                     PeepochatConfig loaded = GSON.fromJson(reader, PeepochatConfig.class);
                     this.enableFilter = loaded.enableFilter;
+                    this.enableDebug = loaded.enableDebug;
+                    this.showRawJson = loaded.showRawJson;
                 }
             } else {
                 save();

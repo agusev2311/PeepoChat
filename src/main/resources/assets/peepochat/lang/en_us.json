@@ -1,5 +1,11 @@
 {
   "peepochat.config.title": "Peepochat Settings",
+
   "peepochat.config.category.general": "General",
-  "peepochat.config.option.enable_filter": "Enable Message Filter"
+  "peepochat.config.category.debug": "Debug",
+
+  "peepochat.config.option.enable_filter": "Enable Message Filter",
+
+  "peepochat.config.option.enable_debug": "Enable Debug Mode",
+  "peepochat.config.option.show_raw_json": "Show Raw JSON Messages"
 }
