@@ -6,6 +6,8 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.text.Text;
+import java.util.Arrays;
+import java.util.ArrayList;
 
 public class ModMenuIntegration implements ModMenuApi {
     @Override
@@ -24,6 +26,26 @@ public class ModMenuIntegration implements ModMenuApi {
                             PeepochatConfig.getInstance().enableFilter)
                     .setDefaultValue(true)
                     .setSaveConsumer(newValue -> PeepochatConfig.getInstance().enableFilter = newValue)
+                    .build()
+            );
+
+            // Friends category
+            ConfigCategory friends = builder.getOrCreateCategory(Text.translatable("peepochat.config.category.friends"));
+            friends.addEntry(entryBuilder.startBooleanToggle(
+                            Text.translatable("peepochat.config.option.enable_friend_highlights"),
+                            PeepochatConfig.getInstance().enableFriendHighlights)
+                    .setDefaultValue(true)
+                    .setTooltip(Text.translatable("peepochat.config.option.enable_friend_highlights.tooltip"))
+                    .setSaveConsumer(newValue -> PeepochatConfig.getInstance().enableFriendHighlights = newValue)
+                    .build()
+            );
+
+            friends.addEntry(entryBuilder.startStrList(
+                            Text.translatable("peepochat.config.option.friend_list"),
+                            PeepochatConfig.getInstance().friendList)
+                    .setDefaultValue(() -> new ArrayList<>(Arrays.asList("PWGoood")))
+                    .setTooltip(Text.translatable("peepochat.config.option.friend_list.tooltip"))
+                    .setSaveConsumer(newValue -> PeepochatConfig.getInstance().friendList = newValue)
                     .build()
             );
 

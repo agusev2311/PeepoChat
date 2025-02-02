@@ -29,9 +29,6 @@ public class PeepochatClient implements ClientModInitializer {
         });
     }
 
-    /**
-     * Проверяет, можно ли показывать сообщение.
-     */
     private boolean shouldAllowMessage(String message) {
         if (!PeepochatConfig.getInstance().enableFilter) {
             return true; // Если фильтр отключен, показываем все сообщения
@@ -41,18 +38,12 @@ public class PeepochatClient implements ClientModInitializer {
         return !(message.startsWith("[+]") || message.startsWith("[-]"));
     }
 
-    /**
-     * Получает raw-содержимое сообщения.
-     */
     private String getRawMessageContent(Text message) {
         StringBuilder raw = new StringBuilder();
         appendTextContent(message, raw);
         return raw.toString();
     }
-
-    /**
-     * Рекурсивно добавляет содержимое текста в raw-строку.
-     */
+    
     private void appendTextContent(Text text, StringBuilder builder) {
         Style style = text.getStyle();
 

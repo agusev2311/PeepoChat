@@ -6,6 +6,8 @@ import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PeepochatConfig {
     private static PeepochatConfig INSTANCE;
@@ -15,6 +17,8 @@ public class PeepochatConfig {
     public boolean enableFilter = true;
     public boolean enableDebug = false;
     public boolean showRawJson = false;
+    public boolean enableFriendHighlights = true;
+    public List<String> friendList = new ArrayList<>();
 
     public static PeepochatConfig getInstance() {
         if (INSTANCE == null) {

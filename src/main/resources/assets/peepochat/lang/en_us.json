@@ -5,7 +5,14 @@
   "peepochat.config.category.debug": "Debug",
 
   "peepochat.config.option.enable_filter": "Enable Message Filter",
+  "peepochat.config.option.swap_click_actions": "Swap Click Actions on Nickname",
 
   "peepochat.config.option.enable_debug": "Enable Debug Mode",
-  "peepochat.config.option.show_raw_json": "Show Raw JSON Messages"
+  "peepochat.config.option.show_raw_json": "Show Raw JSON Messages",
+
+  "peepochat.config.category.friends": "Friends",
+  "peepochat.config.option.enable_friend_highlights": "Enable Friend Highlights",
+  "peepochat.config.option.enable_friend_highlights.tooltip": "Highlight messages from friends in chat",
+  "peepochat.config.option.friend_list": "Friend List",
+  "peepochat.config.option.friend_list.tooltip": "List of usernames to be treated as friends"
 }
