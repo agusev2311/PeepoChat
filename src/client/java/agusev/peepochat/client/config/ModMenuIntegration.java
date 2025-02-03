@@ -31,14 +31,6 @@ public class ModMenuIntegration implements ModMenuApi {
 
             // Friends category
             ConfigCategory friends = builder.getOrCreateCategory(Text.translatable("peepochat.config.category.friends"));
-            friends.addEntry(entryBuilder.startBooleanToggle(
-                            Text.translatable("peepochat.config.option.enable_friend_highlights"),
-                            PeepochatConfig.getInstance().enableFriendHighlights)
-                    .setDefaultValue(true)
-                    .setTooltip(Text.translatable("peepochat.config.option.enable_friend_highlights.tooltip"))
-                    .setSaveConsumer(newValue -> PeepochatConfig.getInstance().enableFriendHighlights = newValue)
-                    .build()
-            );
 
             friends.addEntry(entryBuilder.startStrList(
                             Text.translatable("peepochat.config.option.friend_list"),

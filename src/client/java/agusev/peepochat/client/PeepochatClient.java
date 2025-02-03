@@ -9,6 +9,8 @@ import net.minecraft.text.ClickEvent;
 import net.minecraft.text.HoverEvent;
 import net.minecraft.client.MinecraftClient;
 
+import java.awt.*;
+
 public class PeepochatClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
@@ -31,11 +33,27 @@ public class PeepochatClient implements ClientModInitializer {
 
     private boolean shouldAllowMessage(String message) {
         if (!PeepochatConfig.getInstance().enableFilter) {
-            return true; // Если фильтр отключен, показываем все сообщения
+            return true;
         }
+        String username = extractUsername(message);
 
-        // Условие фильтрации (пример)
-        return !(message.startsWith("[+]") || message.startsWith("[-]"));
+        return (!(message.startsWith("[+]") || message.startsWith("[-]")) || isFriend(username));
+    }
+
+    private boolean isFriend(String username) {
+        return PeepochatConfig.getInstance().friendList.contains(username);
+    }
+
+
+    private String extractUsername(String message) {
+        if (message.startsWith("[+]") || message.startsWith("[-]")) {
+            String username = message.substring(3).trim();
+            MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(
+                    Text.literal("Username: /" + message.substring(3).trim() + "/")
+            );
+            return username;
+        }
+        return "";
     }
 
     private String getRawMessageContent(Text message) {
@@ -43,7 +61,7 @@ public class PeepochatClient implements ClientModInitializer {
         appendTextContent(message, raw);
         return raw.toString();
     }
-    
+
     private void appendTextContent(Text text, StringBuilder builder) {
         Style style = text.getStyle();
 

@@ -11,8 +11,6 @@
   "peepochat.config.option.show_raw_json": "Показывать необработанные JSON-сообщения",
 
   "peepochat.config.category.friends": "Друзья",
-  "peepochat.config.option.enable_friend_highlights": "Включить функцию «Подсветка друзей»",
-  "peepochat.config.option.enable_friend_highlights.tooltip": "Выделение сообщений друзей в чате",
   "peepochat.config.option.friend_list": "Список друзей",
   "peepochat.config.option.friend_list.tooltip": "Список игроков, которые будут считаться друзьями"
 }
