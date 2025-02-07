@@ -29,6 +29,15 @@ public class ModMenuIntegration implements ModMenuApi {
                     .build()
             );
 
+            general.addEntry(entryBuilder.startBooleanToggle(
+                            Text.translatable("peepochat.config.option.enable_messages"),
+                            PeepochatConfig.getInstance().enableMessages)
+                    .setDefaultValue(true)
+                    .setTooltip(Text.translatable("peepochat.config.option.enable_messages.tooltip"))
+                    .setSaveConsumer(newValue -> PeepochatConfig.getInstance().enableMessages = newValue)
+                    .build()
+            );
+
             // Friends category
             ConfigCategory friends = builder.getOrCreateCategory(Text.translatable("peepochat.config.category.friends"));
 

@@ -15,9 +15,9 @@ public class PeepochatConfig {
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("peepochat.json");
 
     public boolean enableFilter = true;
+    public boolean enableMessages = true;
     public boolean enableDebug = false;
     public boolean showRawJson = false;
-    public boolean enableFriendHighlights = true;
     public List<String> friendList = new ArrayList<>();
 
     public static PeepochatConfig getInstance() {
@@ -34,6 +34,7 @@ public class PeepochatConfig {
                 try (Reader reader = new FileReader(CONFIG_PATH.toFile())) {
                     PeepochatConfig loaded = GSON.fromJson(reader, PeepochatConfig.class);
                     this.enableFilter = loaded.enableFilter;
+                    this.enableMessages = loaded.enableMessages;
                     this.enableDebug = loaded.enableDebug;
                     this.showRawJson = loaded.showRawJson;
                 }
