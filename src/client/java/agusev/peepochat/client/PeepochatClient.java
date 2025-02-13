@@ -29,9 +29,9 @@ public class PeepochatClient implements ClientModInitializer {
         if (!PeepochatConfig.getInstance().enableFilter) {
             return true;
         }
-        if (!PeepochatConfig.getInstance().enableMessages) {
-            return false;
-        }
+//        if (!PeepochatConfig.getInstance().enableMessages) {
+//            return false;
+//        }
         String username = extractUsername(message);
 
         return (!(message.startsWith("[+]") || message.startsWith("[-]")) || isFriend(username));

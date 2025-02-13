@@ -7,7 +7,7 @@
 
   "peepochat.config.option.enable_filter": "Enable Message Filter",
   "peepochat.config.option.enable_messages": "Messages",
-  "peepochat.config.option.enable_messages.tooltip": "COMPLETELY disables the chat",
+  "peepochat.config.option.enable_messages.tooltip": "COMPLETELY Disables the Chat",
   "peepochat.config.option.swap_click_actions": "Swap Click Actions on Nickname",
 
   "peepochat.config.option.enable_debug": "Enable Debug Mode",
