@@ -16,11 +16,11 @@ public class PeepochatClient implements ClientModInitializer {
     public void onInitializeClient() {
         ClientReceiveMessageEvents.ALLOW_GAME.register((message, overlay) -> {
             String rawMessage = getRawMessageContent(message);
-            if (PeepochatConfig.getInstance().enableDebug) {
-                MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(
-                        Text.literal("§7[RAW] §r" + rawMessage)
-                );
-            }
+//            if (PeepochatConfig.getInstance().enableDebug) {
+//                MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(
+//                        Text.literal("§7[RAW] §r" + rawMessage)
+//                );
+//            }
             return shouldAllowMessage(rawMessage);
         });
     }

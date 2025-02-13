@@ -51,25 +51,25 @@ public class ModMenuIntegration implements ModMenuApi {
             );
 
             // Debug category
-            ConfigCategory debug = builder.getOrCreateCategory(Text.translatable("peepochat.config.category.debug"));
-            debug.addEntry(entryBuilder.startBooleanToggle(
-                            Text.translatable("peepochat.config.option.enable_debug"),
-                            PeepochatConfig.getInstance().enableDebug)
-                    .setDefaultValue(false)
-                    .setSaveConsumer(newValue -> PeepochatConfig.getInstance().enableDebug = newValue)
-                    .build()
-            );
-
-            // Debug options (only visible when debug is enabled)
-            if (PeepochatConfig.getInstance().enableDebug) {
-                debug.addEntry(entryBuilder.startBooleanToggle(
-                                Text.translatable("peepochat.config.option.show_raw_json"),
-                                PeepochatConfig.getInstance().showRawJson)
-                        .setDefaultValue(false)
-                        .setSaveConsumer(newValue -> PeepochatConfig.getInstance().showRawJson = newValue)
-                        .build()
-                );
-            }
+//            ConfigCategory debug = builder.getOrCreateCategory(Text.translatable("peepochat.config.category.debug"));
+//            debug.addEntry(entryBuilder.startBooleanToggle(
+//                            Text.translatable("peepochat.config.option.enable_debug"),
+//                            PeepochatConfig.getInstance().enableDebug)
+//                    .setDefaultValue(false)
+//                    .setSaveConsumer(newValue -> PeepochatConfig.getInstance().enableDebug = newValue)
+//                    .build()
+//            );
+//
+//            // Debug options (only visible when debug is enabled)
+//            if (PeepochatConfig.getInstance().enableDebug) {
+//                debug.addEntry(entryBuilder.startBooleanToggle(
+//                                Text.translatable("peepochat.config.option.show_raw_json"),
+//                                PeepochatConfig.getInstance().showRawJson)
+//                        .setDefaultValue(false)
+//                        .setSaveConsumer(newValue -> PeepochatConfig.getInstance().showRawJson = newValue)
+//                        .build()
+//                );
+//            }
 
             builder.setSavingRunnable(PeepochatConfig.getInstance()::save);
 

@@ -16,8 +16,8 @@ public class PeepochatConfig {
 
     public boolean enableFilter = true;
 //    public boolean enableMessages = true;
-    public boolean enableDebug = false;
-    public boolean showRawJson = false;
+//    public boolean enableDebug = false;
+//    public boolean showRawJson = false;
     public List<String> friendList = new ArrayList<>();
 
     public static PeepochatConfig getInstance() {
@@ -35,8 +35,8 @@ public class PeepochatConfig {
                     PeepochatConfig loaded = GSON.fromJson(reader, PeepochatConfig.class);
                     this.enableFilter = loaded.enableFilter;
 //                    this.enableMessages = loaded.enableMessages;
-                    this.enableDebug = loaded.enableDebug;
-                    this.showRawJson = loaded.showRawJson;
+//                    this.enableDebug = loaded.enableDebug;
+//                    this.showRawJson = loaded.showRawJson;
                 }
             } else {
                 save();
