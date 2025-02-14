@@ -14,5 +14,12 @@
   "peepochat.config.option.show_raw_json": "Show Raw JSON Messages",
 
   "peepochat.config.option.friend_list": "Friend List",
-  "peepochat.config.option.friend_list.tooltip": "List of usernames to be treated as friends"
+  "peepochat.config.option.friend_list.tooltip": "List of usernames to be treated as friends",
+
+  "peepochat.config.category.direct_messages": "Direct Messages",
+  "peepochat.config.option.color_scheme": "Color Scheme",
+  "peepochat.config.option.color_scheme.2_colors": "2 Colors",
+  "peepochat.config.option.color_scheme.gradient": "Gradient",
+  "peepochat.config.option.custom_color1": "First Color",
+  "peepochat.config.option.custom_color2": "Second Color"
 }

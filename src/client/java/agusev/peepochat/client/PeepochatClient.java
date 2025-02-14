@@ -16,11 +16,6 @@ public class PeepochatClient implements ClientModInitializer {
     public void onInitializeClient() {
         ClientReceiveMessageEvents.ALLOW_GAME.register((message, overlay) -> {
             String rawMessage = getRawMessageContent(message);
-//            if (PeepochatConfig.getInstance().enableDebug) {
-//                MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(
-//                        Text.literal("§7[RAW] §r" + rawMessage)
-//                );
-//            }
             return shouldAllowMessage(rawMessage);
         });
     }
@@ -29,9 +24,6 @@ public class PeepochatClient implements ClientModInitializer {
         if (!PeepochatConfig.getInstance().enableFilter) {
             return true;
         }
-//        if (!PeepochatConfig.getInstance().enableMessages) {
-//            return false;
-//        }
         String username = extractUsername(message);
 
         return (!(message.startsWith("[+]") || message.startsWith("[-]")) || isFriend(username));
@@ -45,15 +37,8 @@ public class PeepochatClient implements ClientModInitializer {
         if (message.matches(".*\\[([+-])\\].*")) {
             String username = message.replaceAll(".*\\[([+-])\\]\\s*([^§\\s]+).*", "$2");
             if (username.isEmpty()) {
-//                MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(
-//                        Text.literal("Username: не удалось извлечь")
-//                );
                 return "";
             }
-
-//            MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(
-//                    Text.literal("Username: " + username)
-//            );
             return username;
         }
         return "";

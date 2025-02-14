@@ -14,5 +14,12 @@
   "peepochat.config.option.show_raw_json": "Показывать необработанные JSON-сообщения",
 
   "peepochat.config.option.friend_list": "Список друзей",
-  "peepochat.config.option.friend_list.tooltip": "Список игроков, которые будут считаться друзьями"
+  "peepochat.config.option.friend_list.tooltip": "Список игроков, которые будут считаться друзьями",
+
+  "peepochat.config.category.direct_messages": "Личные сообщения",
+  "peepochat.config.option.color_scheme": "Раскраска",
+  "peepochat.config.option.color_scheme.2_colors": "2 цвета",
+  "peepochat.config.option.color_scheme.gradient": "Градиент",
+  "peepochat.config.option.custom_color1": "Первый цвет",
+  "peepochat.config.option.custom_color2": "Второй цвет"
 }

@@ -15,10 +15,11 @@ public class PeepochatConfig {
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("peepochat.json");
 
     public boolean enableFilter = true;
-//    public boolean enableMessages = true;
-//    public boolean enableDebug = false;
-//    public boolean showRawJson = false;
     public List<String> friendList = new ArrayList<>();
+    public String selectedOption = "peepochat.config.option.color_scheme.2_colors";
+
+    public int customColor1 = 0x67E8F9;
+    public int customColor2 = 0x22D3EE;
 
     public static PeepochatConfig getInstance() {
         if (INSTANCE == null) {
@@ -34,9 +35,8 @@ public class PeepochatConfig {
                 try (Reader reader = new FileReader(CONFIG_PATH.toFile())) {
                     PeepochatConfig loaded = GSON.fromJson(reader, PeepochatConfig.class);
                     this.enableFilter = loaded.enableFilter;
-//                    this.enableMessages = loaded.enableMessages;
-//                    this.enableDebug = loaded.enableDebug;
-//                    this.showRawJson = loaded.showRawJson;
+                    this.friendList = loaded.friendList;
+                    this.selectedOption = loaded.selectedOption;
                 }
             } else {
                 save();
