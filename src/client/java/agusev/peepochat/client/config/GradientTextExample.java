@@ -18,7 +18,7 @@ public class GradientTextExample {
         return builder;
     }
 
-    private static int interpolateColor(int start, int end, float ratio) {
+    public static int interpolateColor(int start, int end, float ratio) {
         int sr = (start >> 16) & 0xFF, sg = (start >> 8) & 0xFF, sb = start & 0xFF;
         int er = (end >> 16) & 0xFF, eg = (end >> 8) & 0xFF, eb = end & 0xFF;
 

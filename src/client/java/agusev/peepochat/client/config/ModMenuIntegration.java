@@ -13,6 +13,10 @@ import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Objects;
+
+import static agusev.peepochat.client.PaintDirectMessage.PaintText;
+import static agusev.peepochat.client.config.GradientTextExample.interpolateColor;
 
 public class ModMenuIntegration implements ModMenuApi {
     @Override
@@ -74,35 +78,8 @@ public class ModMenuIntegration implements ModMenuApi {
                     })
                     .build()
             );
-
-// Создаем пример текста в зависимости от выбранной опции
-            Text exampleText;
-            if (PeepochatConfig.getInstance().selectedOption.equals("peepochat.config.option.color_scheme.2_colors")) {
-                // Для двух цветов разделим сообщение на части
-                String color1 = String.format("#%06X", PeepochatConfig.getInstance().customColor1);
-                String color2 = String.format("#%06X", PeepochatConfig.getInstance().customColor2);
-
-                MutableText message = Text.literal("").formatted(Formatting.RESET);
-                message.append(Text.literal("✉✉✉ [").setStyle(Style.EMPTY.withColor(PeepochatConfig.getInstance().customColor1)));
-                message.append(Text.literal("Вы").setStyle(Style.EMPTY.withColor(PeepochatConfig.getInstance().customColor2).withBold(true)));
-                message.append(Text.literal(" ").setStyle(Style.EMPTY.withColor(PeepochatConfig.getInstance().customColor1)));
-                message.append(Text.literal("→").setStyle(Style.EMPTY.withColor(PeepochatConfig.getInstance().customColor1)));
-                message.append(Text.literal(" "));
-                message.append(Text.literal("PWGoood").setStyle(Style.EMPTY.withColor(PeepochatConfig.getInstance().customColor2).withBold(true)));
-                message.append(Text.literal("]: ").setStyle(Style.EMPTY.withColor(PeepochatConfig.getInstance().customColor1)));
-                message.append(Text.literal("Привет пугод когда новое видео"));
-
-                exampleText = message;
-            } else {
-                // Для градиента красим только часть до двоеточия
-                MutableText message = Text.literal("").formatted(Formatting.RESET);
-                message.append(GradientTextExample.getGradientText("✉✉✉ [Вы → PWGoood]:",
-                        PeepochatConfig.getInstance().customColor1,
-                        PeepochatConfig.getInstance().customColor2));
-                message.append(Text.literal(" Привет пугод когда новое видео"));
-
-                exampleText = message;
-            }
+            
+            Text exampleText = PaintText(false, "PWGoood", "Привет пугод когда новое видео", PeepochatConfig.getInstance().customColor1, PeepochatConfig.getInstance().customColor2, Objects.equals(PeepochatConfig.getInstance().selectedOption, "peepochat.config.option.color_scheme.2_colors"));
 
             direct_messages.addEntry(entryBuilder.startTextDescription(exampleText)
                     .build());
