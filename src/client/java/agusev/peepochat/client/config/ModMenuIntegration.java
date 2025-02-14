@@ -83,7 +83,7 @@ public class ModMenuIntegration implements ModMenuApi {
                 String color2 = String.format("#%06X", PeepochatConfig.getInstance().customColor2);
 
                 MutableText message = Text.literal("").formatted(Formatting.RESET);
-                message.append(Text.literal("✉️✉️✉️ [").setStyle(Style.EMPTY.withColor(PeepochatConfig.getInstance().customColor1)));
+                message.append(Text.literal("✉✉✉ [").setStyle(Style.EMPTY.withColor(PeepochatConfig.getInstance().customColor1)));
                 message.append(Text.literal("Вы").setStyle(Style.EMPTY.withColor(PeepochatConfig.getInstance().customColor2).withBold(true)));
                 message.append(Text.literal(" ").setStyle(Style.EMPTY.withColor(PeepochatConfig.getInstance().customColor1)));
                 message.append(Text.literal("→").setStyle(Style.EMPTY.withColor(PeepochatConfig.getInstance().customColor1)));
@@ -96,7 +96,7 @@ public class ModMenuIntegration implements ModMenuApi {
             } else {
                 // Для градиента красим только часть до двоеточия
                 MutableText message = Text.literal("").formatted(Formatting.RESET);
-                message.append(GradientTextExample.getGradientText("✉️✉️✉️ [Вы → PWGoood]:",
+                message.append(GradientTextExample.getGradientText("✉✉✉ [Вы → PWGoood]:",
                         PeepochatConfig.getInstance().customColor1,
                         PeepochatConfig.getInstance().customColor2));
                 message.append(Text.literal(" Привет пугод когда новое видео"));

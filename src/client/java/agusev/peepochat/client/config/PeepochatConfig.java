@@ -37,6 +37,8 @@ public class PeepochatConfig {
                     this.enableFilter = loaded.enableFilter;
                     this.friendList = loaded.friendList;
                     this.selectedOption = loaded.selectedOption;
+                    this.customColor1 = loaded.customColor1;
+                    this.customColor2 = loaded.customColor2;
                 }
             } else {
                 save();
