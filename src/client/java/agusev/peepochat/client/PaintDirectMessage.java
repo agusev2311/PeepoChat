@@ -1,5 +1,6 @@
 package agusev.peepochat.client;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -9,13 +10,13 @@ public class PaintDirectMessage {
     public static MutableText PaintText(boolean to_or_from, String name, String text, int color1, int color2, boolean is2colors) {
         String sender = to_or_from ? name : "Вы";
         String receiver = to_or_from ? "Вы" : name;
-        String fullMessage = "✉✉✉ [" + sender + " → " + receiver + "]: ";
+        String fullMessage = "✉✉ [" + sender + " → " + receiver + "]: ";
 
         MutableText message = Text.literal("").formatted(Formatting.RESET);
 
         if (is2colors) {
             // Двухцветное окрашивание
-            message.append(Text.literal("✉✉✉ [").setStyle(Style.EMPTY.withColor(color1)));
+            message.append(Text.literal("✉✉ [").setStyle(Style.EMPTY.withColor(color1)));
             message.append(Text.literal(sender).setStyle(Style.EMPTY.withColor(color2).withBold(true)));
             message.append(Text.literal(" → ").setStyle(Style.EMPTY.withColor(color1)));
             message.append(Text.literal(receiver).setStyle(Style.EMPTY.withColor(color2).withBold(true)));
@@ -54,4 +55,19 @@ public class PaintDirectMessage {
 
         return (r << 16) | (g << 8) | b;
     }
+
+//    public static void sendLocalMessage(boolean to_or_from, String name, String text, int color1, int color2, boolean is2colors) {
+//        if (MinecraftClient.getInstance().player != null) {
+//            MutableText coloredMessage = PaintText(to_or_from, name, text, color1, color2, is2colors, true);
+//
+//        }
+//    }
+
+    // Вариант с настройкой цветов по умолчанию
+//    public static void sendLocalMessage(boolean to_or_from, String name, String text) {
+//        // Используем стандартные цвета, например фиолетовый градиент
+//        int defaultColor1 = 0xFF00FF; // Ярко-розовый
+//        int defaultColor2 = 0x800080; // Фиолетовый
+//        sendLocalMessage(to_or_from, name, text, defaultColor1, defaultColor2, false);
+//    }
 }

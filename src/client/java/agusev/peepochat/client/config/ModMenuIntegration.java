@@ -5,18 +5,13 @@ import com.terraformersmc.modmenu.api.ModMenuApi;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
-import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Objects;
 
 import static agusev.peepochat.client.PaintDirectMessage.PaintText;
-import static agusev.peepochat.client.config.GradientTextExample.interpolateColor;
 
 public class ModMenuIntegration implements ModMenuApi {
     @Override
@@ -52,7 +47,6 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setDefaultValue("peepochat.config.option.color_scheme.2_colors")
                     .setSaveConsumer(newValue -> {
                         PeepochatConfig.getInstance().selectedOption = newValue;
-                        // Здесь можно добавить обновление примера при изменении опции
                     })
                     .build()
             );
@@ -63,7 +57,6 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setDefaultValue(0x67E8F9)
                     .setSaveConsumer(newValue -> {
                         PeepochatConfig.getInstance().customColor1 = newValue;
-                        // Здесь можно добавить обновление примера при изменении цвета
                     })
                     .build()
             );
@@ -74,11 +67,10 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setDefaultValue(0x22D3EE)
                     .setSaveConsumer(newValue -> {
                         PeepochatConfig.getInstance().customColor2 = newValue;
-                        // Здесь можно добавить обновление примера при изменении цвета
                     })
                     .build()
             );
-            
+
             Text exampleText = PaintText(false, "PWGoood", "Привет пугод когда новое видео", PeepochatConfig.getInstance().customColor1, PeepochatConfig.getInstance().customColor2, Objects.equals(PeepochatConfig.getInstance().selectedOption, "peepochat.config.option.color_scheme.2_colors"));
 
             direct_messages.addEntry(entryBuilder.startTextDescription(exampleText)
