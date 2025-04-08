@@ -1,10 +1,10 @@
 package agusev.peepochat.client;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
+import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class PaintDirectMessage {
     public static MutableText PaintText(boolean to_or_from, String name, String text, int color1, int color2, boolean is2colors) {
@@ -12,15 +12,35 @@ public class PaintDirectMessage {
         String receiver = to_or_from ? "Вы" : name;
         String fullMessage = "✉✉ [" + sender + " → " + receiver + "]: ";
 
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
+
+        String receivedOrSent = to_or_from ? "Получено " : "Отправлено ";
+        MutableText hoverText = Text.literal("Личное сообщение\n")
+            .formatted(Formatting.WHITE) // Серый цвет для заголовка
+            .append(Text.literal(receivedOrSent)
+                .formatted(Formatting.DARK_AQUA) // Бирюзовый цвет
+                .append(Text.literal(formattedDateTime)
+                    .formatted(Formatting.WHITE)) // Белый цвет для даты и времени
+                .append("\n")
+                .append(Text.literal("От ")
+                    .formatted(Formatting.DARK_AQUA) // Бирюзовый цвет
+                    .append(Text.literal(name)
+                        .formatted(Formatting.WHITE)) // Белый цвет для имени
+                    .append("\n\n")
+                    .append(Text.literal("Нажмите для ответа")
+                        .formatted(Formatting.GRAY)))); // Серый цвет для подсказки
+
         MutableText message = Text.literal("").formatted(Formatting.RESET);
 
         if (is2colors) {
             // Двухцветное окрашивание
-            message.append(Text.literal("✉✉ [").setStyle(Style.EMPTY.withColor(color1)));
-            message.append(Text.literal(sender).setStyle(Style.EMPTY.withColor(color2).withBold(true)));
-            message.append(Text.literal(" → ").setStyle(Style.EMPTY.withColor(color1)));
-            message.append(Text.literal(receiver).setStyle(Style.EMPTY.withColor(color2).withBold(true)));
-            message.append(Text.literal("]: ").setStyle(Style.EMPTY.withColor(color1)));
+            message.append(Text.literal("✉✉ [").setStyle(Style.EMPTY.withColor(color1)))
+                .append(Text.literal(sender).setStyle(Style.EMPTY.withColor(color2).withBold(true)))
+                .append(Text.literal(" → ").setStyle(Style.EMPTY.withColor(color1)))
+                .append(Text.literal(receiver).setStyle(Style.EMPTY.withColor(color2).withBold(true)))
+                .append(Text.literal("]: ").setStyle(Style.EMPTY.withColor(color1)));
         } else {
             // Градиентное окрашивание
             int startBold1 = fullMessage.indexOf(sender);
@@ -41,8 +61,18 @@ public class PaintDirectMessage {
             }
         }
 
-        message.append(Text.literal(text));
-        return message;
+        message.append(Text.literal(text).setStyle(Style.EMPTY.withColor(Formatting.WHITE)));
+        return message
+            .styled(s -> s
+                .withClickEvent(new ClickEvent(
+                    ClickEvent.Action.SUGGEST_COMMAND,
+                    String.format("/tell %s ", name)
+                ))
+                .withHoverEvent(new HoverEvent(
+                    HoverEvent.Action.SHOW_TEXT,
+                    hoverText
+                ))
+            );
     }
 
     private static int interpolateColor(int color1, int color2, float ratio) {
@@ -55,19 +85,4 @@ public class PaintDirectMessage {
 
         return (r << 16) | (g << 8) | b;
     }
-
-//    public static void sendLocalMessage(boolean to_or_from, String name, String text, int color1, int color2, boolean is2colors) {
-//        if (MinecraftClient.getInstance().player != null) {
-//            MutableText coloredMessage = PaintText(to_or_from, name, text, color1, color2, is2colors, true);
-//
-//        }
-//    }
-
-    // Вариант с настройкой цветов по умолчанию
-//    public static void sendLocalMessage(boolean to_or_from, String name, String text) {
-//        // Используем стандартные цвета, например фиолетовый градиент
-//        int defaultColor1 = 0xFF00FF; // Ярко-розовый
-//        int defaultColor2 = 0x800080; // Фиолетовый
-//        sendLocalMessage(to_or_from, name, text, defaultColor1, defaultColor2, false);
-//    }
 }

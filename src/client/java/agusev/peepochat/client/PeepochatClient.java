@@ -4,10 +4,7 @@ import agusev.peepochat.client.config.PeepochatConfig;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.text.Texts;
+import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 import org.apache.commons.lang3.CharUtils;
 
@@ -51,6 +48,18 @@ public class PeepochatClient implements ClientModInitializer {
                             PeepochatConfig.getInstance().selectedOption.equals("peepochat.config.option.color_scheme.2_colors")
                     );
                 }
+
+//                text = Text.literal("Нажми на меня!")
+//                    .styled(s -> s
+//                        .withClickEvent(new ClickEvent(
+//                            ClickEvent.Action.SUGGEST_COMMAND,
+//                            "/tell agusev2311 "
+//                        ))
+//                        .withHoverEvent(new HoverEvent(
+//                            HoverEvent.Action.SHOW_TEXT,
+//                            Text.literal("Это подсказка при наведении!")
+//                        ))
+//                    );
 
                 MinecraftClient client = MinecraftClient.getInstance();
                 assert client.player != null;
