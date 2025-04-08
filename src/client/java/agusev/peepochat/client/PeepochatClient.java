@@ -35,10 +35,21 @@ public class PeepochatClient implements ClientModInitializer {
 //                System.out.println("RandomText: " + messageText);
 
                 MutableText text;
+                MinecraftClient client = MinecraftClient.getInstance();
+
+                assert client.player != null;
+                System.out.println(client.player.getName());
+
                 if (username.equals("PWGoood")) {
                     text = PaintDirectMessage.PaintText(
                             isMessageForMeResult, username, messageText,
                             0xFDA524, 0xFBFF00,
+                            PeepochatConfig.getInstance().selectedOption.equals("peepochat.config.option.color_scheme.2_colors")
+                    );
+                } else if (username.equals(client.player.getName().getLiteralString())) {
+                    text = PaintDirectMessage.PaintText(
+                            isMessageForMeResult, username, messageText,
+                            0xC5C5C5, 0x393939,
                             PeepochatConfig.getInstance().selectedOption.equals("peepochat.config.option.color_scheme.2_colors")
                     );
                 } else {
@@ -49,20 +60,6 @@ public class PeepochatClient implements ClientModInitializer {
                     );
                 }
 
-//                text = Text.literal("Нажми на меня!")
-//                    .styled(s -> s
-//                        .withClickEvent(new ClickEvent(
-//                            ClickEvent.Action.SUGGEST_COMMAND,
-//                            "/tell agusev2311 "
-//                        ))
-//                        .withHoverEvent(new HoverEvent(
-//                            HoverEvent.Action.SHOW_TEXT,
-//                            Text.literal("Это подсказка при наведении!")
-//                        ))
-//                    );
-
-                MinecraftClient client = MinecraftClient.getInstance();
-                assert client.player != null;
                 client.player.sendMessage(text, false);
 
                 return false;
