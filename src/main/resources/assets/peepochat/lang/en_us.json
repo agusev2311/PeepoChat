@@ -21,5 +21,9 @@
   "peepochat.config.option.color_scheme.2_colors": "2 Colors",
   "peepochat.config.option.color_scheme.gradient": "Gradient",
   "peepochat.config.option.custom_color1": "First Color",
-  "peepochat.config.option.custom_color2": "Second Color"
+  "peepochat.config.option.custom_color2": "Second Color",
+
+  "peepochat.update_screen.title": "New PeepoChat's Update Available",
+  "peepochat.update_screen.download": "Download",
+  "peepochat.update_screen.ignore": "Ignore"
 }

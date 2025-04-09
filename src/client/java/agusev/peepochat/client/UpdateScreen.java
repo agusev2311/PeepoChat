@@ -12,7 +12,7 @@ public class UpdateScreen extends Screen {
     private final VersionChecker.VersionResponse versionResponse;
 
     protected UpdateScreen(Screen parent, VersionChecker.VersionResponse versionResponse) {
-        super(Text.literal("Update Information"));
+        super(Text.translatable("peepochat.update_screen.title"));
         this.parent = parent;
         this.versionResponse = versionResponse;
     }
@@ -20,12 +20,12 @@ public class UpdateScreen extends Screen {
     @Override
     protected void init() {
         if (versionResponse.has_update) {
-            addDrawableChild(ButtonWidget.builder(Text.literal("Download update"), button -> {
+            addDrawableChild(ButtonWidget.builder(Text.translatable("peepochat.update_screen.download"), button -> {
                 Util.getOperatingSystem().open(versionResponse.new_version_link);
             }).dimensions(width / 2 - 100, height / 2 + 30, 200, 20).build());
         }
 
-        addDrawableChild(ButtonWidget.builder(Text.literal("Ignore"), button -> {
+        addDrawableChild(ButtonWidget.builder(Text.translatable("peepochat.update_screen.ignore"), button -> {
             assert client != null;
             client.setScreen(parent);
         }).dimensions(width / 2 - 100, height / 2 + 60, 200, 20).build());
