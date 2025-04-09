@@ -3,14 +3,25 @@ package agusev.peepochat.client;
 import agusev.peepochat.client.config.PeepochatConfig;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
+import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.text.*;
-import net.minecraft.util.Formatting;
-import org.apache.commons.lang3.CharUtils;
 
 public class PeepochatClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        VersionChecker.VersionResponse response = VersionChecker.checkForUpdate("0.5-mc1.21.3");
+        if (response != null && response.has_update) {
+            ScreenEvents.AFTER_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
+                if (screen instanceof TitleScreen) {
+                    client.execute(() -> {
+                        client.setScreen(new UpdateScreen(screen));
+                    });
+                }
+            });
+        }
+
         ClientReceiveMessageEvents.ALLOW_GAME.register((message, overlay) -> {
             String rawMessage = getRawMessageContent(message);
             if (rawMessage.startsWith("✉✉✉")) {
@@ -28,17 +39,11 @@ public class PeepochatClient implements ClientModInitializer {
                     username = parts.length > 1 ? parts[1].split("]: ")[0].trim() : "";
                 }
 
-//                System.out.println("Is message for me: " + isMessageForMeResult);
-//                System.out.println("RandomUsername: э" + username + "э");
-//                System.out.println("RandomUsername: " + parts[0].trim());
-//                System.out.println("RandomUsername2: " + (parts.length > 1 ? parts[1].split("]: ")[0].trim() : ""));
-//                System.out.println("RandomText: " + messageText);
-
                 MutableText text;
                 MinecraftClient client = MinecraftClient.getInstance();
 
                 assert client.player != null;
-                System.out.println(client.player.getName());
+//                System.out.println(client.player.getName());
 
                 if (username.equals("PWGoood")) {
                     text = PaintDirectMessage.PaintText(

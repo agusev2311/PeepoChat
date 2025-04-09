@@ -18,19 +18,19 @@ public class PaintDirectMessage {
 
         String receivedOrSent = to_or_from ? "Получено " : "Отправлено ";
         MutableText hoverText = Text.literal("Личное сообщение\n")
-            .formatted(Formatting.WHITE) // Серый цвет для заголовка
+            .formatted(Formatting.WHITE)
             .append(Text.literal(receivedOrSent)
-                .formatted(Formatting.DARK_AQUA) // Бирюзовый цвет
+                .formatted(Formatting.DARK_AQUA)
                 .append(Text.literal(formattedDateTime)
-                    .formatted(Formatting.WHITE)) // Белый цвет для даты и времени
+                    .formatted(Formatting.WHITE))
                 .append("\n")
                 .append(Text.literal("От ")
-                    .formatted(Formatting.DARK_AQUA) // Бирюзовый цвет
+                    .formatted(Formatting.DARK_AQUA)
                     .append(Text.literal(name)
-                        .formatted(Formatting.WHITE)) // Белый цвет для имени
+                        .formatted(Formatting.WHITE))
                     .append("\n\n")
                     .append(Text.literal("Нажмите для ответа")
-                        .formatted(Formatting.GRAY)))); // Серый цвет для подсказки
+                        .formatted(Formatting.GRAY))));
 
         MutableText message = Text.literal("").formatted(Formatting.RESET);
 

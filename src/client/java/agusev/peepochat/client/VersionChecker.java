@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class VersionChecker {
 
@@ -26,7 +27,7 @@ public class VersionChecker {
             String jsonInputString = "{\"version\": \"" + clientVersion + "\"}";
 
             try (OutputStream os = conn.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes("utf-8");
+                byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
                 os.write(input, 0, input.length);
                 os.flush();
             }
@@ -34,9 +35,9 @@ public class VersionChecker {
             int responseCode = conn.getResponseCode();
             BufferedReader br;
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
             } else {
-                br = new BufferedReader(new InputStreamReader(conn.getErrorStream(), "utf-8"));
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
             }
 
             StringBuilder response = new StringBuilder();
@@ -63,6 +64,7 @@ public class VersionChecker {
      * VersionChecker.VersionResponse response = VersionChecker.checkForUpdate("1.0");
      * if (response != null && response.has_update) { ... }
      */
+
     public static class VersionResponse {
         public String version_status;
         public boolean has_update;
