@@ -8,16 +8,21 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.text.*;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class PeepochatClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        // Проверяем версию при запуске
         VersionChecker.VersionResponse response = VersionChecker.checkForUpdate("0.5-mc1.21.3");
+
         if (response != null && response.has_update) {
+            AtomicBoolean updateScreenShown = new AtomicBoolean(false);
+
             ScreenEvents.AFTER_INIT.register((client, screen, scaledWidth, scaledHeight) -> {
-                if (screen instanceof TitleScreen) {
-                    client.execute(() -> {
-                        client.setScreen(new UpdateScreen(screen));
-                    });
+                if (screen instanceof TitleScreen && !updateScreenShown.get()) {
+                    updateScreenShown.set(true);
+                    client.setScreen(new UpdateScreen(screen, response));
                 }
             });
         }

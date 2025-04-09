@@ -5,33 +5,39 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Util;
+import com.mojang.blaze3d.systems.RenderSystem;
 
 public class UpdateScreen extends Screen {
     private final Screen parent;
+    private final VersionChecker.VersionResponse versionResponse;
 
-    protected UpdateScreen(Screen parent) {
-        super(Text.literal("New Update Available!"));
+    protected UpdateScreen(Screen parent, VersionChecker.VersionResponse versionResponse) {
+        super(Text.literal("Update Information"));
         this.parent = parent;
+        this.versionResponse = versionResponse;
     }
 
     @Override
     protected void init() {
-        addDrawableChild(ButtonWidget.builder(Text.literal("Download update"), button -> {
-            // Действие при нажатии
-            Util.getOperatingSystem().open("https://example.com/download");
-        }).dimensions(width / 2 - 100, height / 2 - 20, 200, 20).build());
+        if (versionResponse.has_update) {
+            addDrawableChild(ButtonWidget.builder(Text.literal("Download update"), button -> {
+                Util.getOperatingSystem().open(versionResponse.new_version_link);
+            }).dimensions(width / 2 - 100, height / 2 + 30, 200, 20).build());
+        }
 
         addDrawableChild(ButtonWidget.builder(Text.literal("Ignore"), button -> {
             assert client != null;
             client.setScreen(parent);
-        }).dimensions(width / 2 - 100, height / 2 + 10, 200, 20).build());
+        }).dimensions(width / 2 - 100, height / 2 + 60, 200, 20).build());
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         context.fill(0, 0, width, height, 0xAA000000); // option: semi-transparent background
         super.render(context, mouseX, mouseY, delta);
-        context.drawCenteredTextWithShadow(textRenderer, title, width / 2, height / 2 - 50, 0xFFFFFF);
+
+        // Title
+        context.drawCenteredTextWithShadow(textRenderer, title, width / 2, height / 2 - 60, 0xFFFFFF);
     }
 
     @Override
@@ -39,4 +45,3 @@ public class UpdateScreen extends Screen {
         return false;
     }
 }
-
