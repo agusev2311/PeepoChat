@@ -62,17 +62,12 @@ public class PaintDirectMessage {
         }
 
         message.append(Text.literal(text).setStyle(Style.EMPTY.withColor(Formatting.WHITE)));
-        return message
-            .styled(s -> s
-                .withClickEvent(new ClickEvent(
-                    ClickEvent.Action.SUGGEST_COMMAND,
-                    String.format("/tell %s ", name)
-                ))
-                .withHoverEvent(new HoverEvent(
-                    HoverEvent.Action.SHOW_TEXT,
-                    hoverText
-                ))
-            );
+        message.setStyle(message.getStyle()
+            .withClickEvent(new ClickEvent.SuggestCommand(String.format("/tell %s ", name)))
+            .withHoverEvent(new HoverEvent.ShowText(hoverText))
+        );
+
+        return message;
     }
 
     private static int interpolateColor(int color1, int color2, float ratio) {
